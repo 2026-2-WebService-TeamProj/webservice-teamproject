@@ -6,7 +6,7 @@ function DeleteArticleButton() {
 
   return (
     <button disabled={isLoading} onClick={() => mutate()} type="button" className="btn btn-outline-danger btn-sm">
-      <i className="ion-trash-a" /> Delete Article
+      <i className="ion-trash-a" /> 삭제
     </button>
   )
 }

@@ -9,12 +9,12 @@ function Navbar() {
     <nav className="navbar navbar-light">
       <div className="container">
         <NavLink activeClassName="active" className="navbar-brand" to="/" end>
-          conduit
+          travelog
         </NavLink>
         <ul className="nav navbar-nav pull-xs-right">
           <li className="nav-item">
             <NavLink activeClassName="active" className="nav-link" to="/" end>
-              Home
+              홈
             </NavLink>
           </li>
           {isAuth && (
@@ -22,13 +22,13 @@ function Navbar() {
               <li className="nav-item">
                 <NavLink activeClassName="active" className="nav-link" to="/editor">
                   <i className="ion-compose" />
-                  &nbsp;New Post
+                  &nbsp;새 글
                 </NavLink>
               </li>
               <li className="nav-item">
                 <NavLink activeClassName="active" className="nav-link" to="/settings">
                   <i className="ion-gear-a" />
-                  &nbsp;Settings
+                  &nbsp;설정
                 </NavLink>
               </li>
               <li className="nav-item">
@@ -43,12 +43,12 @@ function Navbar() {
             <>
               <li className="nav-item">
                 <NavLink activeClassName="active" className="nav-link" to="/register">
-                  Sign up
+                  회원가입
                 </NavLink>
               </li>
               <li className="nav-item">
                 <NavLink activeClassName="active" className="nav-link" to="/login">
-                  Sign in
+                  로그인
                 </NavLink>
               </li>
             </>

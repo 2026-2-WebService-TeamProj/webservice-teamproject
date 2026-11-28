@@ -27,14 +27,14 @@ function ArticleCommentForm() {
               as="textarea"
               required
               className="form-control"
-              placeholder="Write a comment..."
+              placeholder="댓글을 입력하세요..."
               rows={3}
             />
           </div>
           <div className="card-footer">
             <img src={author?.image} className="comment-author-img" />
             <button disabled={isSubmitting} type="submit" className="btn btn-sm btn-primary">
-              Post Comment
+              댓글 등록
             </button>
           </div>
         </Form>

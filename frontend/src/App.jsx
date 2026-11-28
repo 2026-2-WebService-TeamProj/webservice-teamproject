@@ -27,11 +27,11 @@ function App() {
       <footer>
         <div className="container">
           <Link to="/" className="logo-font">
-            conduit
+            travelog
           </Link>
           <span className="attribution">
-            An interactive learning project from <a href="https://thinkster.io">Thinkster</a>. Code &amp; design
-            licensed under MIT.
+            Team 08 여행 후기 블로그 · <a href="https://github.com/gothinkster/realworld">RealWorld(Conduit)</a> 기반,
+            원본 코드 &amp; 디자인 MIT 라이선스 (<a href="https://thinkster.io">Thinkster</a>)
           </span>
         </div>
       </footer>

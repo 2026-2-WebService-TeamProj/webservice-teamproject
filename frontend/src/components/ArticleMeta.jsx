@@ -20,12 +20,12 @@ function ArticleMeta() {
         <Link to={`/profile/${author?.username}`} className="author">
           {author?.username}
         </Link>
-        <span className="date">{new Date(createdAt).toDateString()}</span>
+        <span className="date">{new Date(createdAt).toLocaleDateString('ko-KR')}</span>
       </div>
       {canUpdate ? (
         <span>
           <Link className="btn btn-outline-secondary btn-sm" to={`/editor/${slug}`}>
-            <i className="ion-edit" /> Edit Article
+            <i className="ion-edit" /> 수정
           </Link>
           &nbsp;&nbsp;
           <DeleteArticleButton />
@@ -35,7 +35,7 @@ function ArticleMeta() {
           <FollowAuthorButton />
           &nbsp;&nbsp;
           <FavoriteArticleButton slug={slug} favorited={favorited}>
-            &nbsp; {favorited ? 'Unfavorite' : 'Favorite'} Article <span className="counter">({favoritesCount})</span>
+            &nbsp; {favorited ? '좋아요 취소' : '좋아요'} <span className="counter">({favoritesCount})</span>
           </FavoriteArticleButton>
         </>
       )}

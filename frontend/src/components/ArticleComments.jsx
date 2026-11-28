@@ -11,7 +11,7 @@ function ArticleComments() {
   if (!isAuth) {
     return (
       <p>
-        <Link to="/login">Sign in</Link> or <Link to="/register">sign up</Link> to add comments on this article.
+        댓글을 남기려면 <Link to="/login">로그인</Link> 또는 <Link to="/register">회원가입</Link>을 해주세요.
       </p>
     )
   }

@@ -7,10 +7,6 @@ import axios from 'axios'
 import App from './App'
 import makeServer from './server'
 
-if (process.env.NODE_ENV === 'production') {
-  axios.defaults.baseURL = 'https://api.realworld.io/api'
-}
-
 const defaultQueryFn = async ({ queryKey }) => {
   const { data } = await axios.get(queryKey[0], { params: queryKey[1] })
   return data
@@ -34,7 +30,9 @@ if (window.Cypress && process.env.NODE_ENV === 'test') {
     },
   })
   cyServer.logging = false
-} else if(process.env.NODE_ENV === 'development') {
+} else {
+  // 13주차: 백엔드 연결 전이라 배포(Vercel)에서도 Mirage mock 서버로 화면을 보여준다.
+  // 14주차에 Spring Boot API를 연결하면 이 부분을 axios.defaults.baseURL 설정으로 바꾼다.
   makeServer({ environment: 'development' })
 }
 

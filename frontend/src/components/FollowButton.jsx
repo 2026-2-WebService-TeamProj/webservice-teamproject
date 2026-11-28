@@ -13,7 +13,7 @@ function FollowButton({ disabled, onClick, following, username }) {
       })}
     >
       <i className="ion-plus-round" />
-      &nbsp; {following ? 'Unfollow' : 'Follow'} {username}
+      &nbsp; {username} {following ? '팔로우 취소' : '팔로우'}
     </button>
   )
 }
