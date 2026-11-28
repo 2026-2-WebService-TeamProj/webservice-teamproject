@@ -1,29 +1,83 @@
-import { Link } from 'react-router-dom';
-import { mockArticles } from '../mocks/articles.js';
+import classNames from 'classnames'
+import React from 'react'
+import { ArticleList, PopularTags } from '../components'
+import { useAuth } from '../hooks'
 
-// 임시 홈 화면: 상세 화면으로 들어가는 링크만 둔다.
-// 글 목록 화면은 별도 작업에서 이 파일을 교체한다.
-export default function Home() {
+const initialFilters = { tag: '', offset: null, feed: false }
+
+function Home() {
+  const { isAuth } = useAuth()
+  const [filters, setFilters] = React.useState({ ...initialFilters, feed: isAuth })
+
+  React.useEffect(() => {
+    setFilters({ ...initialFilters, feed: isAuth })
+  }, [isAuth])
+
+  function onTagClick(tag) {
+    setFilters({ ...initialFilters, tag })
+  }
+
+  function onGlobalFeedClick() {
+    setFilters(initialFilters)
+  }
+
+  function onFeedClick() {
+    setFilters({ ...initialFilters, feed: true })
+  }
+
   return (
     <div className="home-page">
       <div className="banner">
         <div className="container">
-          <h1 className="logo-font">travelog</h1>
-          <p>여행의 기록을 나누는 곳</p>
+          <h1 className="logo-font">conduit</h1>
+          <p>A place to share your knowledge.</p>
         </div>
       </div>
-
       <div className="container page">
-        {mockArticles.map((article) => (
-          <div className="article-preview" key={article.id}>
-            <Link to={`/articles/${article.id}`} className="preview-link">
-              <h1>{article.title}</h1>
-              <p>{article.region} · {article.authorNickname}</p>
-              <span>자세히 보기</span>
-            </Link>
+        <div className="row">
+          <div className="col-md-9">
+            <div className="feed-toggle">
+              <ul className="nav nav-pills outline-active">
+                {isAuth && (
+                  <li className="nav-item">
+                    <button
+                      onClick={onFeedClick}
+                      type="button"
+                      className={classNames('nav-link', {
+                        active: filters.feed,
+                      })}
+                    >
+                      Your Feed
+                    </button>
+                  </li>
+                )}
+                <li className="nav-item">
+                  <button
+                    type="button"
+                    className={classNames('nav-link', {
+                      active: !filters?.tag && !filters.feed,
+                    })}
+                    onClick={onGlobalFeedClick}
+                  >
+                    Global Feed
+                  </button>
+                </li>
+                {filters?.tag && (
+                  <li className="nav-item">
+                    <a className="nav-link active"># {filters?.tag}</a>
+                  </li>
+                )}
+              </ul>
+            </div>
+            <ArticleList filters={filters} />
           </div>
-        ))}
+          <div className="col-md-3">
+            <PopularTags onTagClick={onTagClick} />
+          </div>
+        </div>
       </div>
     </div>
-  );
+  )
 }
+
+export default Home
